@@ -1,50 +1,38 @@
-<div align="center">
-  <img src="https://vercel.app" alt="Eaglercraft Hub" />
-  
-  <p align="center">
-    <strong>A visual index of web-native Minecraft clients, multi-version builds, and repository sources.</strong>
-  </p>
+# ⛏️ Eaglercraft Web Client Directory
 
-  <p align="center">
-    <img src="https://shields.io" alt="Minecraft Browser Edition" />
-    <img src="https://shields.io" alt="Directory" />
-    <img src="https://shields.io" alt="Active Status" />
-  </p>
-</div>
+A comprehensive collection of web-based Minecraft clients, custom client builds, and playable browser versions.
 
 ---
 
-## 🎮 Version Hub & Performance Matrix
+## 🎮 Playable Clients & Web Links
 
-Track compilation states and community files across every major Eaglercraft milestone.
+Click any link below to launch the client directly in your browser:
 
-| Version | Release Name | Core Engine Features | Main Source / Download Location |
-| :---: | :--- | :--- | :--- |
-| **1.26.x** | `Eaglercraft 26.x` | 🔱 Mace, wind charges, Trial Chambers, and WebAssembly | [sillysausage892 Version List](https://github.com/sillysausage892/eaglercraft-version-list "sillysausage892 version list") |
-| **1.8.8** | `EaglercraftX` | 🚀 Modern multi-player, shaders, custom texture packs | [Eaglercraft-Archive GitHub](https://github.com/Eaglercraft-Archive "Eaglercraft-Archive GitHub") & [lax1dude Workspace](https://github.com "lax1dude Git") |
-| **1.5.2** | `Eaglercraft Classic` | ⚡ Insane FPS, integrated singleplayer, legacy servers | [Eaglercraft-Archive 1.5.2](https://github.com "Eaglercraft-Archive Source") |
-| **Beta 1.3** | `Eaglercraft Retro` | 📻 Nostalgic old-school mechanics, alpha/beta terrains | [EaglerReborn Compile Hub](https://github.com "EaglerReborn Assets") |
+### 📦 Base & Modern Versions
+| Version | Engine / Type | Direct Link |
+| :--- | :--- | :--- |
+| **Eaglercraft 26.3** | WebAssembly | [Play 26.3](https://client.goldhq.net/client/client.html) |
+| **Eaglercraft 26.2** | WebAssembly (u2 Build) | [Play 26.2](https://eaglercraft-26-2-u1-cdn.u2471966200.workers.dev/eaglercraft-26.2-u2.html?v=u2-20261020) |
+| **Eaglercraft 1.20.6** | WebAssembly | [Play 1.20.6](https://eymenwsmc.site/120/?v=20260824-5430efd6) |
+| **Eaglercraft 1.17.10** | WebAssembly | [Play 1.17.10](https://eymenwsmc.site/r1710/) |
+| **Eaglercraft 1.14.4** | WebAssembly | [Play 1.14.4](https://eymenwsmc.site/114/) |
+| **Eaglercraft 1.12.2** | Tuff Client (WASM) | [Play 1.12.2 WASM](https://beta.tuffclient.com/files/1_1UT15/WASM/) |
+| **Eaglercraft 1.12.2** | Tuff Client (JS) | [Play 1.12.2 JS](https://beta.tuffclient.com/files/1_1UT15/JS/) |
 
+### ⚡ Custom PvP & Client Mods
+| Client Name | Features / Focus | Direct Link |
+| :--- | :--- | :--- |
+| **Astra Client** | FPS optimization and clean UI | [Launch Astra](https://your-link-here.com) |
+| **Modern Client** | Built-in cosmetics and utility features | [Launch Modern]([[https://your-link-here.com]](https://wasm.modernclient.online/)) |
 ---
 
-## 🌍 Sourcing Online Clients & Repositories
+## 🌐 WebSocket Server Addresses
 
-### 🖥️ Core Codebases & Archive Hubs
-*   **The Main Source Archive:** Use the community-backed [Eaglercraft-Archive GitHub Page](https://github.com/Eaglercraft-Archive "Eaglercraft-Archive GitHub") to acquire unminified workspace files, offline HTML builds, and server software proxies.
-*   **WASM & Version Collections:** Browse compiled variants and hybrid clients via the community managed [eaglercraft-version-list Repository](https://github.com/sillysausage892/eaglercraft-version-list "Eaglercraft Version List").
+To join multiplayer worlds in-game, navigate to **Multiplayer > Add Server** and use any of these active WebSocket endpoints:
 
-### 📦 Server Deployment & Custom Extensions
-*   **For Plugins & Servers:** Visit the [EaglerXServer Core](https://github.com/eaglerxserver "EaglerXServer Repository") to deploy a backend network that matches browser-based WebSockets.
-*   **For UI & Client Tweaks:** Check out community extensions and modifications over at [Eaglercraft-Extras](https://github.com "Eaglercraft Extras on GitHub").
-
----
-
-## ⚠️ Important Preservation Tip
-
-> **Saves are Browser-Bound!** 
-> Eaglercraft tracks your singleplayer worlds completely inside your browser's **Local Storage**. If you clear your history, cookies, or partition cache, **your worlds will disappear forever.** Make a habit of hitting **Export World (.epk)** in the game menus frequently!
+- `wss://mc.archyverse.org` — *Survival / Lifesteal / KitPvP*
+- `wss://top.bagelsmp.com` — *Economy Survival*
+- `wss://mc.voidsent.net` — *Practice / Factions / Minigames*
+- `wss://krypticmc.net` — *Bedwars / Skywars / Practice*
 
 ---
-<div align="center">
-  <sub>Brought to you by the Eaglercraft Preservation Community ☕</sub>
-</div>
