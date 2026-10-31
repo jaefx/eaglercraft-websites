@@ -35,4 +35,9 @@ To join multiplayer worlds in-game, navigate to **Multiplayer > Add Server** and
 - `wss://pcsmp.net` — *Bedwars / Skywars / Practice*
 
 ---
-`some of the offline downloads are here too`
+`sadly i cant upload the offline downloads here because of the file size but here are the links for it
+| Version / Client | Description | Link |
+| :--- | :--- | :--- |
+| **Eaglercraft 26.2 – 1.14.4** | Multi-version WebAssembly build | [26.2 - 1.14.4](https://eymenwsmc.site/) |
+| **Eaglercraft 26.3** | Latest WebAssembly client | [26.3](https://client.goldhq.net/) |
+| **TuffLauncher** | Custom client launcher | [Tuff](https://tuffclient.com/) |
