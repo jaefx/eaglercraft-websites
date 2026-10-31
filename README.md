@@ -22,7 +22,7 @@ Click any link below to launch the client directly in your browser:
 ### ⚡ Custom PvP & Client Mods
 | Client Name | Features / Focus | Direct Link |
 | :--- | :--- | :--- |
-| **Eagler Craft Ranked** | FPS optimization and clean UI | [Launch Astra](https://play.eaglercraftranked.com/client/current/) |
+| **Eagler Craft Ranked** | FPS optimization and clean UI | [Launch EaglerRanked](https://play.eaglercraftranked.com/client/current/) |
 ---
 
 ## 🌐 WebSocket Server Addresses
