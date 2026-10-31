@@ -1,114 +1,50 @@
-< align="center">
-  <!-- Replace the URL below with a link to your project's logo or a cool GIF banner -->
-  <img src="https://vercel.app" alt="Header Banner" />
+<div align="center">
+  <img src="https://vercel.app" alt="Eaglercraft Hub" />
   
   <p align="center">
-    <strong>A short, punchy one-sentence description explaining exactly what this project solves.</strong>
+    <strong>A visual index of web-native Minecraft clients, multi-version builds, and repository sources.</strong>
   </p>
 
   <p align="center">
-    <a href="#-key-features">Features</a> •
-    <a href="#-live-demo">Demo</a> •
-    <a href="#-installation">Installation</a> •
-    <a href="#-tech-stack">Tech Stack</a> •
-    <a href="#-contributing">Contributing</a>
-  </p>
-
-  <!-- Replace with your actual repo path for dynamic shield badges -->
-  <p align="center">
-    <img src="https://shields.io" alt="Stars" />
-    <img src="https://shields.io" alt="Forks" />
-    <img src="https://shields.io" alt="Issues" />
-    <img src="https://shields.io" alt="License" />
+    <img src="https://shields.io" alt="Minecraft Browser Edition" />
+    <img src="https://shields.io" alt="Directory" />
+    <img src="https://shields.io" alt="Active Status" />
   </p>
 </div>
 
-<br />
+---
 
-## 🚀 Key Features
+## 🎮 Version Hub & Performance Matrix
 
-*   **⚡ High Performance:** Optimized for speed and low memory footprint.
-*   **🎨 Beautiful UI/UX:** Clean, intuitive, and highly responsive interface.
-*   **🔒 Secure by Default:** Built-in protection against common vulnerabilities.
-*   **🛠️ Modular Architecture:** Easy to extend, scale, and customize.
+Track compilation states and community files across every major Eaglercraft milestone.
+
+| Version | Release Name | Core Engine Features | Main Source / Download Location |
+| :---: | :--- | :--- | :--- |
+| **1.26.x** | `Eaglercraft 26.x` | 🔱 Mace, wind charges, Trial Chambers, and WebAssembly | [sillysausage892 Version List](https://github.com/sillysausage892/eaglercraft-version-list "sillysausage892 version list") |
+| **1.8.8** | `EaglercraftX` | 🚀 Modern multi-player, shaders, custom texture packs | [Eaglercraft-Archive GitHub](https://github.com/Eaglercraft-Archive "Eaglercraft-Archive GitHub") & [lax1dude Workspace](https://github.com "lax1dude Git") |
+| **1.5.2** | `Eaglercraft Classic` | ⚡ Insane FPS, integrated singleplayer, legacy servers | [Eaglercraft-Archive 1.5.2](https://github.com "Eaglercraft-Archive Source") |
+| **Beta 1.3** | `Eaglercraft Retro` | 📻 Nostalgic old-school mechanics, alpha/beta terrains | [EaglerReborn Compile Hub](https://github.com "EaglerReborn Assets") |
 
 ---
 
-## 📸 Live Demo / Preview
+## 🌍 Sourcing Online Clients & Repositories
 
-| Desktop View | Mobile View |
-| :---: | :---: |
-| <img src="https://placeholder.com" width="400" alt="Desktop Preview" /> | <img src="https://placeholder.com" width="180" alt="Mobile Preview" /> |
+### 🖥️ Core Codebases & Archive Hubs
+*   **The Main Source Archive:** Use the community-backed [Eaglercraft-Archive GitHub Page](https://github.com/Eaglercraft-Archive "Eaglercraft-Archive GitHub") to acquire unminified workspace files, offline HTML builds, and server software proxies.
+*   **WASM & Version Collections:** Browse compiled variants and hybrid clients via the community managed [eaglercraft-version-list Repository](https://github.com/sillysausage892/eaglercraft-version-list "Eaglercraft Version List").
 
-*Tip: You can replace these placeholder images with an animated `.gif` to showcase your project in action!*
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend & UI
-![React](https://shields.io)
-![TailwindCSS](https://shields.io)
-![TypeScript](https://shields.io)
-
-### Backend & Database
-![NodeJS](https://shields.io)
-![PostgreSQL](https://shields.io)
+### 📦 Server Deployment & Custom Extensions
+*   **For Plugins & Servers:** Visit the [EaglerXServer Core](https://github.com/eaglerxserver "EaglerXServer Repository") to deploy a backend network that matches browser-based WebSockets.
+*   **For UI & Client Tweaks:** Check out community extensions and modifications over at [Eaglercraft-Extras](https://github.com "Eaglercraft Extras on GitHub").
 
 ---
 
-## 📥 Installation
+## ⚠️ Important Preservation Tip
 
-Follow these quick steps to get a local copy up and running:
-
-### Prerequisites
-Make sure you have Node.js and npm installed.
-```bash
-npm install npm@latest -g
-```
-
-### Setup Steps
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com
-   ```
-2. **Navigate into the directory:**
-   ```bash
-   cd YOUR_REPO_NAME
-   ```
-3. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-4. **Configure environment variables:**
-   ```bash
-   cp .env.example .env
-   ```
-5. **Start the local development server:**
-   ```bash
-   npm run dev
-   ```
+> **Saves are Browser-Bound!** 
+> Eaglercraft tracks your singleplayer worlds completely inside your browser's **Local Storage**. If you clear your history, cookies, or partition cache, **your worlds will disappear forever.** Make a habit of hitting **Export World (.epk)** in the game menus frequently!
 
 ---
-
-## 🤝 Contributing
-
-Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com">@YOUR_USERNAME</a></sub>
+  <sub>Brought to you by the Eaglercraft Preservation Community ☕</sub>
 </div>
