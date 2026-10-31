@@ -22,17 +22,17 @@ Click any link below to launch the client directly in your browser:
 ### ⚡ Custom PvP & Client Mods
 | Client Name | Features / Focus | Direct Link |
 | :--- | :--- | :--- |
-| **Astra Client** | FPS optimization and clean UI | [Launch Astra](https://your-link-here.com) |
-| **Modern Client** | Built-in cosmetics and utility features | [Launch Modern]([[https://your-link-here.com]](https://wasm.modernclient.online/)) |
+| **Eagler Craft Ranked** | FPS optimization and clean UI | [Launch Astra](https://play.eaglercraftranked.com/client/current/) |
 ---
 
 ## 🌐 WebSocket Server Addresses
 
 To join multiplayer worlds in-game, navigate to **Multiplayer > Add Server** and use any of these active WebSocket endpoints:
 
-- `wss://mc.archyverse.org` — *Survival / Lifesteal / KitPvP*
+- `wss://archmc.org` — *Survival / Lifesteal / KitPvP*
 - `wss://top.bagelsmp.com` — *Economy Survival*
-- `wss://mc.voidsent.net` — *Practice / Factions / Minigames*
-- `wss://krypticmc.net` — *Bedwars / Skywars / Practice*
+- `wss://voidsent.net` — *Practice / Factions / Minigames*
+- `wss://pcsmp.net` — *Bedwars / Skywars / Practice*
 
 ---
+`some of the offline downloads are here too`
