@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⛏️ EAGLERCRAFT WEB LAUNCHER</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        midnight: '#090d16',
+                        midnightCard: '#111726',
+                        midnightBorder: '#1e293b',
+                        midnightAccent: '#38bdf8',
+                        emeraldAccent: '#10b981',
+                        purpleAccent: '#a855f7'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #090d16;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .client-card {
+            background: rgba(17, 23, 38, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .client-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px 0 rgba(56, 189, 248, 0.15);
+        }
+
+        .glow-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .glow-btn:hover {
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-midnightAccent selection:text-black">
+
+    <!-- Header Section -->
+    <header class="border-b border-midnightBorder bg-midnight/80 backdrop-blur-md sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-midnightAccent to-purpleAccent flex items-center justify-center text-midnight font-black shadow-lg shadow-midnightAccent/20">
+                    <i class="fa-solid fa-cube text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-gray-200 to-sky-400 bg-clip-text text-transparent">
+                        ⛏️ EAGLERCRAFT WEB LAUNCHER
+                    </h1>
+                    <p class="text-xs text-gray-400 font-mono">Browser Game Directory & Client Portal</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="hidden md:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-midnightCard border border-midnightBorder text-xs text-gray-300">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emeraldAccent animate-pulse"></span>
+                    <span id="clientCounter">9 Clients Registered</span>
+                </div>
+                <a href="#servers" class="px-4 py-2 rounded-xl bg-midnightCard hover:bg-midnightBorder border border-midnightBorder hover:border-midnightAccent/50 text-sm font-medium text-gray-200 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-server text-midnightAccent"></i>
+                    <span>Servers</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+        <!-- Controls: Search & Category Filters -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 bg-midnightCard/50 p-4 rounded-2xl border border-midnightBorder">
+            <div class="relative flex-grow max-w-md">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    oninput="filterClients()" 
+                    placeholder="Search version (e.g. 26.3, WASM, 1.12)..." 
+                    class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-midnight border border-midnightBorder focus:border-midnightAccent focus:outline-none focus:ring-1 focus:ring-midnightAccent text-sm text-gray-100 placeholder-gray-500 transition"
+                >
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2 text-xs">
+                <button onclick="setFilter('all')" class="filter-btn active px-3.5 py-2 rounded-lg bg-midnightAccent/10 border border-midnightAccent text-midnightAccent font-semibold transition">All</button>
+                <button onclick="setFilter('wasm')" class="filter-btn px-3.5 py-2 rounded-lg bg-midnight border border-midnightBorder text-gray-400 hover:text-white transition">WASM</button>
+                <button onclick="setFilter('tuff')" class="filter-btn px-3.5 py-2 rounded-lg bg-midnight border border-midnightBorder text-gray-400 hover:text-white transition">Tuff Client</button>
+                <button onclick="setFilter('hubs')" class="filter-btn px-3.5 py-2 rounded-lg bg-midnight border border-midnightBorder text-gray-400 hover:text-white transition">Hubs & Multi</button>
+            </div>
+        </div>
+
+        <!-- Grid of Clients -->
+        <div id="clientsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Injection via JavaScript -->
+        </div>
+
+        <!-- Empty Results Message -->
+        <div id="noResults" class="hidden text-center py-20">
+            <i class="fa-solid fa-ghost text-5xl text-gray-600 mb-4"></i>
+            <h3 class="text-lg font-bold text-gray-300">No client matches your search</h3>
+            <p class="text-sm text-gray-500 mt-1">Try clearing your filters or search keywords.</p>
+            <button onclick="clearSearch()" class="mt-4 px-4 py-2 rounded-xl bg-midnightAccent/20 text-midnightAccent border border-midnightAccent/40 text-sm hover:bg-midnightAccent/30 transition">Reset Search</button>
+        </div>
+
+        <!-- WebSocket Servers Section -->
+        <section id="servers" class="mt-16 border-t border-midnightBorder pt-10">
+            <div class="mb-6 flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-network-wired text-emeraldAccent"></i>
+                        Popular WebSocket Server Addresses
+                    </h2>
+                    <p class="text-xs text-gray-400 mt-1">Add these WebSocket links inside Multiplayer mode to play online.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Server 1 -->
+                <div class="p-4 rounded-xl bg-midnightCard border border-midnightBorder flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-emeraldAccent uppercase tracking-wide block">ArchyVerse</span>
+                        <code class="text-sm font-mono text-gray-200 block mt-0.5">wss://mc.archyverse.org</code>
+                        <span class="text-[10px] text-gray-500 mt-1 block">Survival / Lifesteal</span>
+                    </div>
+                    <button onclick="copyServer('wss://mc.archyverse.org', this)" class="p-2.5 rounded-lg bg-midnight hover:bg-midnightAccent/20 text-gray-400 hover:text-midnightAccent border border-midnightBorder transition">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Server 2 -->
+                <div class="p-4 rounded-xl bg-midnightCard border border-midnightBorder flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-emeraldAccent uppercase tracking-wide block">BagelSMP</span>
+                        <code class="text-sm font-mono text-gray-200 block mt-0.5">wss://top.bagelsmp.com</code>
+                        <span class="text-[10px] text-gray-500 mt-1 block">Economy SMP</span>
+                    </div>
+                    <button onclick="copyServer('wss://top.bagelsmp.com', this)" class="p-2.5 rounded-lg bg-midnight hover:bg-midnightAccent/20 text-gray-400 hover:text-midnightAccent border border-midnightBorder transition">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Server 3 -->
+                <div class="p-4 rounded-xl bg-midnightCard border border-midnightBorder flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-emeraldAccent uppercase tracking-wide block">Voidsent</span>
+                        <code class="text-sm font-mono text-gray-200 block mt-0.5">wss://mc.voidsent.net</code>
+                        <span class="text-[10px] text-gray-500 mt-1 block">Practice / Factions</span>
+                    </div>
+                    <button onclick="copyServer('wss://mc.voidsent.net', this)" class="p-2.5 rounded-lg bg-midnight hover:bg-midnightAccent/20 text-gray-400 hover:text-midnightAccent border border-midnightBorder transition">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Server 4 -->
+                <div class="p-4 rounded-xl bg-midnightCard border border-midnightBorder flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold text-emeraldAccent uppercase tracking-wide block">KrypticMC</span>
+                        <code class="text-sm font-mono text-gray-200 block mt-0.5">wss://krypticmc.net</code>
+                        <span class="text-[10px] text-gray-500 mt-1 block">Bedwars / Skywars</span>
+                    </div>
+                    <button onclick="copyServer('wss://krypticmc.net', this)" class="p-2.5 rounded-lg bg-midnight hover:bg-midnightAccent/20 text-gray-400 hover:text-midnightAccent border border-midnightBorder transition">
+                        <i class="fa-regular fa-copy text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Embedded Player Modal -->
+    <div id="playerModal" class="fixed inset-0 bg-black/90 z-50 hidden flex flex-col justify-between">
+        <div class="h-14 bg-midnight border-b border-midnightBorder px-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span id="modalTitle" class="text-sm font-bold text-white">Launching...</span>
+                <span id="modalTag" class="px-2 py-0.5 rounded text-[10px] bg-midnightAccent/20 text-midnightAccent font-mono">WASM</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a id="modalExternalLink" href="#" target="_blank" class="px-3 py-1 rounded bg-midnightCard border border-midnightBorder hover:border-midnightAccent text-xs text-gray-300 flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open External Tab
+                </a>
+                <button onclick="closeModal()" class="w-8 h-8 rounded bg-midnightCard border border-midnightBorder hover:bg-red-500/20 hover:text-red-400 text-gray-400 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+        <div class="flex-grow w-full bg-black relative">
+            <iframe id="gameIframe" class="w-full h-full border-0" allow="autoplay; fullscreen; clipboard-read; clipboard-write; microphone;"></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-midnightBorder py-6 mt-12 bg-midnight/50">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500 space-y-2">
+            <p>Eaglercraft is an independent web port of Minecraft. This directory is not affiliated with Mojang Studios or Microsoft.</p>
+            <p class="font-mono text-gray-600">Built for jaefx/eaglercraft-websites</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        const clients = [
+            {
+                name: "Eaglercraft 26.3",
+                engine: "WebAssembly",
+                tag: "wasm",
+                version: "26.3",
+                description: "Latest WebAssembly client port with optimized renderer and modern features.",
+                url: "https://client.goldhq.net/client/client.html",
+                icon: "fa-rocket",
+                color: "text-sky-400"
+            },
+            {
+                name: "Eaglercraft 26.2",
+                engine: "WebAssembly (u2 Build)",
+                tag: "wasm",
+                version: "26.2",
+                description: "Stable WebAssembly build hosted on fast CDN workers.",
+                url: "https://eaglercraft-26-2-u1-cdn.u2471966200.workers.dev/eaglercraft-26.2-u2.html?v=u2-20261020",
+                icon: "fa-bolt",
+                color: "text-emerald-400"
+            },
+            {
+                name: "Eaglercraft 1.20.6",
+                engine: "WebAssembly",
+                tag: "wasm",
+                version: "1.20.6",
+                description: "Modern Minecraft feature set running in WebAssembly.",
+                url: "https://eymenwsmc.site/120/?v=20260824-5430efd6",
+                icon: "fa-cube",
+                color: "text-purple-400"
+            },
+            {
+                name: "Eaglercraft 1.17.10",
+                engine: "WebAssembly",
+                tag: "wasm",
+                version: "1.17.10",
+                description: "Caves & Cliffs update features playable directly in browser.",
+                url: "https://eymenwsmc.site/r1710/",
+                icon: "fa-mountain",
+                color: "text-amber-400"
+            },
+            {
+                name: "Eaglercraft 1.14.4",
+                engine: "WebAssembly",
+                tag: "wasm",
+                version: "1.14.4",
+                description: "Village & Pillage update client build with custom WebSocket support.",
+                url: "https://eymenwsmc.site/114/",
+                icon: "fa-shield-halved",
+                color: "text-rose-400"
+            },
+            {
+                name: "Eaglercraft 1.12.2 WASM",
+                engine: "Tuff Client (WASM)",
+                tag: "tuff",
+                version: "1.12.2",
+                description: "Tuff Client WebAssembly engine for 1.12.2 featuring low latency.",
+                url: "https://beta.tuffclient.com/files/1_1UT15/WASM/",
+                icon: "fa-microchip",
+                color: "text-cyan-400"
+            },
+            {
+                name: "Eaglercraft 1.12.2 JS",
+                engine: "Tuff Client (JS)",
+                tag: "tuff",
+                version: "1.12.2",
+                description: "Standard JavaScript legacy engine edition of Tuff Client 1.12.2.",
+                url: "https://beta.tuffclient.com/files/1_1UT15/JS/",
+                icon: "fa-code",
+                color: "text-indigo-400"
+            },
+            {
+                name: "Multi-Version Hub",
+                engine: "26.2 down to 1.14.4",
+                tag: "hubs",
+                version: "Multi",
+                description: "EymenWS central launcher hosting multi-version build selection.",
+                url: "https://eymenwsmc.site/",
+                icon: "fa-layer-group",
+                color: "text-pink-400"
+            },
+            {
+                name: "TuffLauncher Hub",
+                engine: "Custom Launcher",
+                tag: "hubs",
+                version: "Official",
+                description: "Official Tuff Client portal and version downloader launcher.",
+                url: "https://tuffclient.com/",
+                icon: "fa-compass",
+                color: "text-emerald-400"
+            }
+        ];
+
+        let activeTagFilter = 'all';
+
+        function renderClients(data) {
+            const grid = document.getElementById('clientsGrid');
+            const noResults = document.getElementById('noResults');
+            grid.innerHTML = '';
+
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            data.forEach(client => {
+                const card = document.createElement('div');
+                card.className = 'client-card rounded-2xl p-5 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-midnight border border-midnightBorder flex items-center justify-center ${client.color}">
+                                <i class="fa-solid ${client.icon} text-lg"></i>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-full bg-midnight border border-midnightBorder text-[11px] font-mono font-medium text-gray-300">
+                                ${client.engine}
+                            </span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white group-hover:text-midnightAccent transition">${client.name}</h3>
+                        <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">${client.description}</p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-midnightBorder/60 flex items-center space-x-2">
+                        <button onclick="launchEmbedded('${client.url}', '${client.name}', '${client.engine}')" class="glow-btn flex-grow py-2.5 px-3 rounded-xl bg-midnightAccent text-midnight font-bold text-xs flex items-center justify-center space-x-2 hover:bg-sky-300 transition">
+                            <i class="fa-solid fa-play"></i>
+                            <span>Launch in App</span>
+                        </button>
+                        <a href="${client.url}" target="_blank" title="Open directly in new tab" class="p-2.5 rounded-xl bg-midnight border border-midnightBorder hover:border-midnightAccent hover:text-midnightAccent text-gray-400 text-xs transition">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterClients() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = clients.filter(c => {
+                const matchesQuery = c.name.toLowerCase().includes(query) || 
+                                     c.engine.toLowerCase().includes(query) || 
+                                     c.version.toLowerCase().includes(query);
+                const matchesTag = activeTagFilter === 'all' || c.tag === activeTagFilter;
+                return matchesQuery && matchesTag;
+            });
+            renderClients(filtered);
+        }
+
+        function setFilter(tag) {
+            activeTagFilter = tag;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-midnightAccent/10', 'border-midnightAccent', 'text-midnightAccent', 'font-semibold');
+                btn.classList.add('bg-midnight', 'border-midnightBorder', 'text-gray-400');
+            });
+
+            event.target.classList.remove('bg-midnight', 'border-midnightBorder', 'text-gray-400');
+            event.target.classList.add('bg-midnightAccent/10', 'border-midnightAccent', 'text-midnightAccent', 'font-semibold');
+
+            filterClients();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            setFilter('all');
+        }
+
+        function launchEmbedded(url, name, engine) {
+            document.getElementById('modalTitle').textContent = name;
+            document.getElementById('modalTag').textContent = engine;
+            document.getElementById('modalExternalLink').href = url;
+            document.getElementById('gameIframe').src = url;
+            document.getElementById('playerModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('playerModal').classList.add('hidden');
+            document.getElementById('gameIframe').src = '';
+        }
+
+        function copyServer(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = btnElement.querySelector('i');
+                icon.className = 'fa-solid fa-check text-emeraldAccent';
+                setTimeout(() => {
+                    icon.className = 'fa-regular fa-copy text-sm';
+                }, 2000);
+            }).catch(() => {
+                // Fallback copy execution
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const icon = btnElement.querySelector('i');
+                icon.className = 'fa-solid fa-check text-emeraldAccent';
+                setTimeout(() => {
+                    icon.className = 'fa-regular fa-copy text-sm';
+                }, 2000);
+            });
+        }
+
+        // Initialize on Load
+        window.onload = function() {
+            renderClients(clients);
+        }
+    </script>
+</body>
+</html>
